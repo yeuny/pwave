@@ -1,0 +1,77 @@
+import numpy as np
+import matplotlib.pyplot as plt
+#from matplotlib.ticker import MaxNLocator
+
+def f(x):
+    return x*np.exp(2*x)
+def prime(x):
+    return (2*x+1)*(np.exp(2*x))
+#print("answer:",prime(1))
+def ff(h):
+    return (f(1+h)-f(1))/h
+
+#등비수열 만들기
+#xx=[]
+min=0
+yy=[]
+aproxx=100
+for i in range(1,21):
+  #print(10**(-i))
+  #xx.append(i) #k 누적
+  #print(i,":",ff(10**(-i)))
+  aprox=prime(1)-ff(10**(-i))
+  #print("aprox=",aprox)
+  min=i
+  if ff(10**(-i))==0:
+    while min>i:
+      print("if the cases with very small h, f'numerical goes 0")
+      break
+
+    
+    
+  
+  if aprox<0:
+    #print("절댓값 delta:",-aprox)
+    aprox=-aprox
+  ##print(aprox/prime(1))
+  yy.append(aprox/prime(1))
+    
+  if aproxx>aprox:
+    aproxx=aprox
+    max=i
+    #print("aproxx:",aproxx,"k =",i)
+  
+print("k =",max) #1.(b)답 출력
+  #print(i,aprox)
+
+
+#print(xx)
+#print(yy)
+
+
+
+
+x=np.arange(1,21)
+y=np.array(yy)
+plt.xticks(np.arange(1,21,1))
+#plt.ylim([min(yy),max(yy)])
+plt.yscale('log')
+plt.plot(x,y)
+'''
+xx=np.arange(17,21)
+plt.xticks(np.arange(1,17,1))
+plt.plot(xx,y)
+'''
+
+plt.xlabel('k')
+plt.ylabel('Absolute Error')
+#plt.xlim([1,20])
+#plt.ylim([1e-6,1e1])
+#plt.grid(True)
+plt.show()
+
+
+
+
+
+
